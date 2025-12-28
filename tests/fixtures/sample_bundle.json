@@ -1,0 +1,68 @@
+{
+  "repo": {
+    "owner": "test",
+    "name": "repo",
+    "full_name": "test/repo"
+  },
+  "milestone": {
+    "title": "v1.0.0",
+    "number": 1,
+    "description": "First major release with core features",
+    "state": "open",
+    "created_at": "2024-01-01T00:00:00Z",
+    "due_on": "2024-03-01T00:00:00Z",
+    "closed_at": null
+  },
+  "issues": [
+    {
+      "number": 1,
+      "title": "Implement user authentication",
+      "body": "Add login and registration functionality with JWT tokens",
+      "state": "open",
+      "labels": ["feature", "backend"],
+      "created_at": "2024-01-02T00:00:00Z",
+      "closed_at": null,
+      "user": "developer1"
+    },
+    {
+      "number": 2,
+      "title": "Add API rate limiting",
+      "body": "Implement rate limiting to prevent abuse of API endpoints",
+      "state": "open",
+      "labels": ["feature", "security"],
+      "created_at": "2024-01-03T00:00:00Z",
+      "closed_at": null,
+      "user": "developer2"
+    },
+    {
+      "number": 3,
+      "title": "Fix memory leak in cache",
+      "body": "Cache implementation has a memory leak that causes OOM after 24 hours",
+      "state": "open",
+      "labels": ["bug", "critical"],
+      "created_at": "2024-01-04T00:00:00Z",
+      "closed_at": null,
+      "user": "developer1"
+    },
+    {
+      "number": 4,
+      "title": "Add monitoring dashboard",
+      "body": "Create dashboard to visualize system metrics and health",
+      "state": "open",
+      "labels": ["feature", "ops"],
+      "created_at": "2024-01-05T00:00:00Z",
+      "closed_at": null,
+      "user": "developer3"
+    },
+    {
+      "number": 5,
+      "title": "Document API endpoints",
+      "body": "Write comprehensive API documentation with examples",
+      "state": "open",
+      "labels": ["documentation"],
+      "created_at": "2024-01-06T00:00:00Z",
+      "closed_at": null,
+      "user": "developer2"
+    }
+  ]
+}

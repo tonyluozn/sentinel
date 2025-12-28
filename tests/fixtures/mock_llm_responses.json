@@ -1,0 +1,64 @@
+[
+  {
+    "iteration": 1,
+    "response": {
+      "choices": [{
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [{
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "search_issues",
+              "arguments": "{\"query\": \"authentication\"}"
+            }
+          }]
+        }
+      }],
+      "usage": {
+        "prompt_tokens": 100,
+        "completion_tokens": 50
+      }
+    }
+  },
+  {
+    "iteration": 2,
+    "response": {
+      "choices": [{
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [{
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "arguments": "{\"path\": \"PRD.md\", \"content\": \"# PRD\\n\\n## Goals\\n\\nImplement user authentication with JWT tokens.\\n\\n## Scope\\n\\nIn scope: Login, registration, token management.\\nOut of scope: OAuth integration.\\n\\n## Metrics\\n\\n- 95% uptime\\n- < 200ms response time\"}"
+            }
+          }]
+        }
+      }],
+      "usage": {
+        "prompt_tokens": 150,
+        "completion_tokens": 80
+      }
+    }
+  },
+  {
+    "iteration": 3,
+    "response": {
+      "choices": [{
+        "message": {
+          "role": "assistant",
+          "content": "I have completed generating the PRD and Launch Plan. The documents are ready.",
+          "tool_calls": null
+        }
+      }],
+      "usage": {
+        "prompt_tokens": 200,
+        "completion_tokens": 30
+      }
+    }
+  }
+]
