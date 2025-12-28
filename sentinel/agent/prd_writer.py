@@ -38,6 +38,7 @@ class PRDAgent:
             "read_file": self._tool_read_file,
             "write_file": self._tool_write_file,
             "search_issues": self._tool_search_issues,
+            "list_issues": self._tool_list_issues,
         }
 
         self.context = {
@@ -92,6 +93,17 @@ class PRDAgent:
             if query_lower in title or query_lower in body:
                 matches.append(issue)
         return matches
+
+    def _tool_list_issues(self) -> List[Dict]:
+        """List all available issues with their numbers and titles."""
+        return [
+            {
+                "number": issue.get("number"),
+                "title": issue.get("title"),
+                "state": issue.get("state"),
+            }
+            for issue in self.bundle.get("issues", [])
+        ]
 
     def run(self) -> Dict[str, Path]:
         iteration = 0
@@ -164,7 +176,30 @@ Use the tools to gather information and write the documents incrementally."""
                     },
                 },
             },
+            {
+                "type": "function",
+                "function": {
+                    "name": "list_issues",
+                    "description": "List all available issues with their numbers and titles. Use this to see which issue numbers are available before fetching specific issues.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                    },
+                },
+            },
         ]
+
+        # Build list of available issue numbers and titles for the prompt
+        issues = self.bundle.get("issues", [])
+        issue_summary = "\n".join(
+            [
+                f"  - #{issue.get('number')}: {issue.get('title', 'Untitled')}"
+                for issue in issues[:20]  # Show first 20 to avoid overwhelming the prompt
+            ]
+        )
+        if len(issues) > 20:
+            issue_summary += f"\n  ... and {len(issues) - 20} more issues"
 
         messages = [
             {"role": "system", "content": system_prompt},
@@ -173,8 +208,12 @@ Use the tools to gather information and write the documents incrementally."""
                 "content": f"""Generate PRD and Launch Plan for milestone: {self.bundle['milestone']['title']}
 
 Repository: {self.bundle['repo']['full_name']}
-Issues: {len(self.bundle.get('issues', []))} issues in this milestone
+Total issues: {len(issues)} issues in this milestone
 
+Available issues:
+{issue_summary}
+
+You can use the list_issues tool to see all issues, or search_issues to find issues by keyword.
 Start by exploring the issues and then write PRD.md and LAUNCH_PLAN.md.""",
             },
         ]

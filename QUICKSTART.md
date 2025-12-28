@@ -41,10 +41,10 @@ export GITHUB_TOKEN="ghp_your-token-here"
 sentinel --help
 
 # Fetch milestone data (no API key needed)
-sentinel fetch --repo microsoft/vscode --milestone "January 2024"
+sentinel fetch --repo microsoft/vscode --milestone "On Deck"
 
 # Run full pipeline (requires OPENAI_API_KEY)
-sentinel run --repo microsoft/vscode --milestone "January 2024"
+sentinel run --repo microsoft/vscode --milestone "On Deck"
 ```
 
 ## Verify Installation
@@ -103,3 +103,5 @@ head -10 runs/latest/trace/events.jsonl | jq .
 - Read [SETUP.md](SETUP.md) for detailed setup
 - Read [README.md](README.md) for usage examples
 - Check [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for architecture details
+
+

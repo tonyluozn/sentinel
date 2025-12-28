@@ -1,0 +1,405 @@
+{
+  "repo": {
+    "owner": "microsoft",
+    "name": "vscode",
+    "full_name": "microsoft/vscode"
+  },
+  "milestone": {
+    "title": "On Deck",
+    "number": 27,
+    "description": "The Issues assigned to the **On Deck** milestone under consideration for the upcoming milestones.\r\nOur goal is to always have less than 100 Issues on deck.",
+    "state": "open",
+    "created_at": "2016-08-19T16:02:12Z",
+    "due_on": null,
+    "closed_at": null
+  },
+  "issues": [
+    {
+      "number": 284013,
+      "title": "Restore last chat session improvements",
+      "body": "Some ideas from @alexdima on how to improve restore last chat session behavior:\na) if the workspace has unaccepted AI edits, we keep the previous session\nb) if the previous session was concluded less than 1hr ago and we load up the workspace, we keep the previous session\n\nSome ideas from me:\na) VS Code update triggers a reload. Right now reload never clears the session. I think some of these reloads should clear the session. For example: if no unaccepted AI edits, and if the previous session was concluded > 1h ago (so the reverse condition of Alex's idea above)",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "under-discussion"
+      ],
+      "created_at": "2025-12-17T09:45:24Z",
+      "closed_at": null,
+      "user": "isidorn"
+    },
+    {
+      "number": 283517,
+      "title": "TreeError [AgentSessionsView] Data tree node not found",
+      "body": "```\nERR TreeError [AgentSessionsView] Data tree node not found: copilotcli:/e88115e2-7617-4df8-982d-90be811f78f8: Error: TreeError [AgentSessionsView] Data tree node not found: copilotcli:/e88115e2-7617-4df8-982d-90be811f78f8\nat [vs/base/browser/ui/tree/asyncDataTree.ts:1065:9](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/browser/ui/tree/asyncDataTree.ts#L1065)\nat [vs/base/browser/ui/tree/asyncDataTree.ts:865:24](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/browser/ui/tree/asyncDataTree.ts#L865)\nat [vs/platform/list/browser/listService.ts:1241:21](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/platform/list/browser/listService.ts#L1241)\nat [vs/base/common/event.ts:185:84](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L185)\nat [vs/base/common/event.ts:1212:12](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L1212)\nat [vs/base/common/event.ts:1223:8](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L1223)\nat [vs/base/common/event.ts:1247:8](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L1247)\nat [vs/base/common/event.ts:1212:12](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L1212)\nat [vs/base/common/event.ts:1243:8](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L1243)\nat [vs/base/common/event.ts:134:83](https://github.com/microsoft/vscode/blob/0d1ac13bc4847cf870373727f12ae70ad6c6e500/src/vs/base/common/event.ts#L134)\n```",
+      "state": "open",
+      "labels": [
+        "bug",
+        "tree-widget",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-15T06:23:09Z",
+      "closed_at": null,
+      "user": "bpasero"
+    },
+    {
+      "number": 283051,
+      "title": "Agent sessions: show session status globally in the title bar",
+      "body": "* start an agent chat session\n* notice the frog shows progress\n\nIMO that's wrong, e.g the wrong location because not file related and also visually v e r y far away and disconnected. Why not use a badge on the view?\n\n\n<img width=\"1428\" height=\"936\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a586d2ff-c6df-4d8e-a527-1375bf49831d\" />",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "ux",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-12T14:27:41Z",
+      "closed_at": null,
+      "user": "jrieken"
+    },
+    {
+      "number": 282652,
+      "title": "Agent sessions: always visible toggle for sidebar",
+      "body": "\nType: <b>Feature Request</b>\n\nThe hide button for the agent sessions sidebar in GitHub Copilot only appears when the sidebar is visible. Redesign it as a toggle button that's always visible to allow easy show/hide switching. This enhances usability for users who frequently toggle the sidebar.\n\nVS Code version: Code - Insiders 1.108.0-insider (5dab7809de7d46dffea7180dddcde7100f2ab4d6, 2025-12-11T05:02:35.991Z)\nOS version: Windows_NT x64 10.0.26200\nModes:\nRemote OS version: Linux x64 6.6.87.2-microsoft-standard-WSL2\n\n\n<!-- generated by issue reporter -->",
+      "state": "closed",
+      "labels": [
+        "feature-request",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-11T08:29:50Z",
+      "closed_at": "2025-12-18T09:42:18Z",
+      "user": "iwangbowen"
+    },
+    {
+      "number": 282523,
+      "title": "Wrong error message extraction when Git hooks fail",
+      "body": "<!-- ⚠️⚠️ Do Not Delete This! bug_report_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- 🕮 Read our guide about submitting issues: https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions -->\n<!-- 🔎 Search existing issues to avoid creating duplicates. -->\n<!-- 🧪 Test using the latest Insiders build to see if your issue has already been fixed: https://code.visualstudio.com/insiders/ -->\n<!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->\n<!-- 🔧 Launch with `code --disable-extensions` to check. -->\nDoes this issue occur when all extensions are disabled?: Yes\n<!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->\n<!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->\n\nVersion: 1.106.3 (system setup)\nCommit: bf9252a2fb45be6893dd8870c0bf37e2e1766d61\nDate: 2025-11-25T22:28:18.024Z\nElectron: 37.7.0\nElectronBuildId: 12781156\nChromium: 138.0.7204.251\nNode.js: 22.20.0\nV8: 13.8.258.32-electron.0\nOS: Windows_NT x64 10.0.26200\n\n## Problem Description\n\nWhen Git hooks (e.g., pre-commit hooks) fail, VS Code displays misleading error messages. The error message extraction logic simply takes the first line of the hook output, which may be an informational or success message rather than the actual error. This makes it difficult for users to understand why their commit failed.\n\n## Expected Behavior\n\nWhen a Git hook fails, VS Code should display the actual error message that explains why the hook failed, prioritizing lines that indicate failures (e.g., \"Failed\", \"exit code\", \"hook id:\") over informational or success messages.\n\n## Actual Behavior\n\nVS Code shows the first line of the hook output as the error message, which could be:\n- A success message (e.g., \"Passed\", \"Skipped\", \"no files to check\")\n- An informational message that doesn't explain the actual failure\n- A message from a different hook that passed, while the actual failure is on a later line\n\nThis causes confusion as users see messages like \"Git: Passed\" or \"Git: no files to check\" when their commit actually failed due to a different hook.\n\n## Steps to Reproduce\n\n1. Set up a Git repository with multiple pre-commit hooks (e.g., using Husky or similar tools)\n2. Configure one hook to pass and another to fail\n3. Attempt to commit changes in VS Code\n4. Observe the error message displayed\n\n**Example scenario:**\n- Create a pre-commit hook that runs linting\n- The linting hook outputs: \"Passed: ESLint check\" on the first line, but a later hook fails with \"Failed: Unit tests\"\n- VS Code shows: \"Git: Passed: ESLint check\" instead of the actual failure\n",
+      "state": "open",
+      "labels": [
+        "bug",
+        "git"
+      ],
+      "created_at": "2025-12-10T16:28:53Z",
+      "closed_at": null,
+      "user": "fabio-andre-rodrigues"
+    },
+    {
+      "number": 282227,
+      "title": "relative worktrees are not detected",
+      "body": "\nType: <b>Bug</b>\n\nWith setting `git.detectWorktrees` enabled, worktrees created with absolute paths are detected but worktrees created with relative paths are not.\nThis is the reason some of my worktrees were not detected as reported in #267606, because GitExtensions creates relative worktrees by default.\n\nSteps to Reproduce:\n\n1. clone any repo\n2. create an absolute path worktree \n    `git worktree add -b absolute ../worktree_absolute --no-relative-paths`\n3. create a relativ path worktree\n    `git worktree add -b relative ../worktree_relative --relative-paths`\n4. notice only the first one is detected by vscode\n\nVS Code version: Code 1.106.3 (bf9252a2fb45be6893dd8870c0bf37e2e1766d61, 2025-11-25T22:28:18.024Z)\nOS version: Windows_NT x64 10.0.26100\nModes:\n\n<details>\n<summary>System Info</summary>\n\n|Item|Value|\n|---|---|\n|CPUs|11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz (16 x 2304)|\n|GPU Status|2d_canvas: enabled<br>direct_rendering_display_compositor: disabled_off_ok<br>gpu_compositing: enabled<br>multiple_raster_threads: enabled_on<br>opengl: enabled_on<br>rasterization: enabled<br>raw_draw: disabled_off_ok<br>skia_graphite: disabled_off<br>trees_in_viz: disabled_off<br>video_decode: enabled<br>video_encode: enabled<br>vulkan: disabled_off<br>webgl: enabled<br>webgl2: enabled<br>webgpu: enabled<br>webnn: disabled_off|\n|Load (avg)|undefined|\n|Memory (System)|31.72GB (12.64GB free)|\n|Process Argv|--crash-reporter-id 5a307952-9126-44ad-b48a-095556129421|\n|Screen Reader|no|\n|VM|0%|\n</details>Extensions disabled<details>\n<summary>A/B Experiments</summary>\n\n```\nvsliv368cf:30146710\npythonvspyt551cf:31249601\nbinariesv615:30325510\nnativeloc1:31344060\ndwcopilot:31170013\ndwoutputs:31242946\ncopilot_t_ci:31333650\ne5gg6876:31282496\npythonrdcb7:31342333\naj953862:31281341\nb6b4d950:31327385\nnes-set-on:31351930\n6abeh943:31336334\ncloudbuttont:31379625\ntodos-1:31405332\n3efgi100_wstrepl:31403338\ntrigger-command-fix:31379601\nauto_model_enabled:31385282\nuse-responses-api:31390855\n3i15c187:31428712\nec5jj548:31422691\nterminalsuggestenabled:31431119\ncp_cls_c_966_ss:31426491\nchatvisible:31426294\nexpandedtokens:31427242\nc0683394:31419495\n478ah919:31426797\nfa76a614:31426880\ncp_jb_t_lixleitest:31428973\n\n```\n\n</details>\n\n<!-- generated by issue reporter -->",
+      "state": "open",
+      "labels": [
+        "bug",
+        "git"
+      ],
+      "created_at": "2025-12-09T14:37:16Z",
+      "closed_at": null,
+      "user": "thefasquelle"
+    },
+    {
+      "number": 282109,
+      "title": "Agent sessions: support empty workspaces",
+      "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nRef https://github.com/microsoft/vscode-internalbacklog/issues/6388\n\nIn an empty workspace, I can't find my archived sessions. I tried newly archiving a session and both filtering for archived sessions and scrolling to the bottom of the sessions list, but I don't see them. I do see archived sessions if I have a folder open in the editor (non-empty workspace).\n\nBottom of session list in empty workspace:\n\n<img width=\"517\" height=\"1295\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5c902a60-050b-4648-a1b5-9d7bd079b3d9\" />\n\nBottom of session list in non-empty workspace:\n\n<img width=\"524\" height=\"558\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/d1dcfbb5-6fe3-4dca-b27c-282a3f486c12\" />",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "ux",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-09T01:43:26Z",
+      "closed_at": null,
+      "user": "bamurtaugh"
+    },
+    {
+      "number": 281990,
+      "title": "Agent sessions: reflect pending edit working set in diff information",
+      "body": "From our discussion today: should the statistics in a card be:\n* global across all changes that the session did\n* only per changes that have not been accepted yet\n\nThis also depends on if the chat is local, background or cloud.",
+      "state": "open",
+      "labels": [
+        "under-discussion",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-08T16:13:30Z",
+      "closed_at": null,
+      "user": "bpasero"
+    },
+    {
+      "number": 281961,
+      "title": "Agent sessions: show all sessions in empty chat by default",
+      "body": "Feedback from standup today: why do we not show all sessions above the chat input by default, instead of focusing on the top 3 and asking the user to drill into or make the view wide.\n\nSee how there is lots of empty space available if we were to make the welcome banner hidden:\n\n<img width=\"582\" height=\"980\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/274f7c99-7383-40b6-8cdd-836ebf754ec7\" />",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "ux",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-08T13:59:23Z",
+      "closed_at": null,
+      "user": "bpasero"
+    },
+    {
+      "number": 281857,
+      "title": "Agent sessions: do not show a session as unread that was run in foreground to completion",
+      "body": "Today a session is marked as unread when it has not been opened through the sessions view:\n\n<img width=\"454\" height=\"217\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/43676366-db56-4547-9626-2be41b0ad324\" />\n\nBut that is not good because you can run a chat in foreground and see all the output but the session is still marked as unread.",
+      "state": "open",
+      "labels": [
+        "bug",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-08T05:51:43Z",
+      "closed_at": null,
+      "user": "bpasero"
+    },
+    {
+      "number": 281568,
+      "title": "Agent sessions: have static toggle state for recent and all sessions",
+      "body": "I love the new look.\n\n<img width=\"593\" height=\"1055\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5c628907-3149-4144-bc96-7d524ef17890\" />\n\nThe next thing it made me wonder about was this toggle between \"Show All Sessions\" and \"Show Recent Sessions\"... I don't know why I would want the \"Recent Sessions\" when the \"All Sessions\" has everything and more. I am guessing we didn't want to overwhelm the user, which makes sense, but I think we can do this without overwhelming them.\n\nhttps://github.com/user-attachments/assets/2a175ac6-0370-4f19-b4c2-534999adef57\n\n* get rid of the \"Show Recent Sessions\" \"Show All Sessions\" toggle\n* just call it \"Recent Sessions\" (but we want the content of the \"All Sessions\")\n* let it scroll and maybe show the most recent 3 or 4 by default (I like 4 since we have more space getting rid of the toggle in the first bullet)\n* allow expanding it down using the sash just like a view/the terminal \n\n<img width=\"629\" height=\"560\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/d54d27ac-5d66-40b3-8972-0140064ec339\" />\n\nI also don't think the \"Recent Sessions\" makes sense in the expanded case:\n\n<img width=\"902\" height=\"1052\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/63091b13-3e9c-434c-8ffc-418dd06b383a\" />\n\nlots of dead space in the bottom right",
+      "state": "closed",
+      "labels": [
+        "ux",
+        "under-discussion",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-05T17:50:38Z",
+      "closed_at": "2025-12-09T07:07:11Z",
+      "user": "TylerLeonhardt"
+    },
+    {
+      "number": 281567,
+      "title": "Continue chat in background doesn't get enough context handed over",
+      "body": "1. Implement a complex feature in one chat with tests\n2. \"Run the related tests\" → Continue in background\n\nExpected: New chat is seeded with enough prior context on a well-defined task\nActual: 🐛 New chat just starts with \"Run the related tests\", not getting ANY of the prior conversation context\n\nExample where I implemented new benchmarks in our eval suite, and asked background agent to run them. 🐛 It came with zero context and agent assumed it runs tests with playwright.\n\n<img width=\"578\" height=\"323\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/1d33888a-4dfc-4946-8056-173190122fb8\" />",
+      "state": "closed",
+      "labels": [
+        "bug",
+        "info-needed",
+        "chat-agent"
+      ],
+      "created_at": "2025-12-05T17:49:28Z",
+      "closed_at": "2025-12-18T11:33:44Z",
+      "user": "digitarald"
+    },
+    {
+      "number": 281564,
+      "title": "Agent sessions: sidebar toggle should not change width of the view",
+      "body": "Steps to Reproduce:\n\n1. maximize the Secondary side bar using the `[ ]` button in the top right next to the `x`\n2. click the \"Hide Agent Sessions Sidebar\" hoping that it will just close it like it does in other chat apps like Claude\n3. 🐛 the whole Secondary side bar shrinks to nothing\n\nhttps://github.com/user-attachments/assets/0b5d6e28-085d-4e93-a36d-a32427a44b19\n\nI don't think that this show/hide agent sessions sidebar should change the width of the secondary side bar. Instead it should would like this:\n\nhttps://github.com/user-attachments/assets/6e368ce5-9c82-41cb-b426-a3dde969032c\n",
+      "state": "closed",
+      "labels": [
+        "feature-request",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-05T17:45:50Z",
+      "closed_at": "2025-12-09T07:51:21Z",
+      "user": "TylerLeonhardt"
+    },
+    {
+      "number": 281294,
+      "title": "Clicking on the + button of the Background Agent view doesn't work",
+      "body": "\nType: <b>Bug</b>\n\n1. Open vscode\n2. Open Agent Sessions panel\n3. Click on the + button in the Background Agent view trying to add a new session\nExpected: Open a new copilot cli session\nActual: Nothing happens. \n\nThe interesting part is I can still open a new session by click on the down chevron to the right of the + button to trigger the dropdown menu, then click on \"New Agent Session In Terminal\".\nFeels like the + button should be binding to that menu item.\n\nVS Code version: Code - Insiders 1.107.0-insider (Universal) (a44beb9c392505cf7897ad5a20c5b83d26537fd1, 2025-12-04T05:02:26.912Z)\nOS version: Darwin arm64 25.1.0\nModes:\n\n<details>\n<summary>System Info</summary>\n\n|Item|Value|\n|---|---|\n|CPUs|Apple M1 Pro (8 x 2400)|\n|GPU Status|2d_canvas: enabled<br>direct_rendering_display_compositor: disabled_off_ok<br>gpu_compositing: enabled<br>multiple_raster_threads: enabled_on<br>opengl: enabled_on<br>rasterization: enabled<br>raw_draw: disabled_off_ok<br>skia_graphite: enabled_on<br>trees_in_viz: disabled_off<br>video_decode: enabled<br>video_encode: enabled<br>webgl: enabled<br>webgl2: enabled<br>webgpu: enabled<br>webnn: disabled_off|\n|Load (avg)|2, 5, 20|\n|Memory (System)|16.00GB (0.16GB free)|\n|Process Argv|--crash-reporter-id d2329c78-39f2-401c-96bd-afc18cc51c9b|\n|Screen Reader|no|\n|VM|0%|\n</details><details><summary>Extensions (24)</summary>\n\nExtension|Author (truncated)|Version\n---|---|---\nclaude-code|Ant|2.0.58\nvscode-eslint|dba|3.0.16\ngitlens|eam|17.7.1\nprettier-vscode|esb|11.0.2\ncopilot-chat|Git|0.34.2025120102\nvscode-pull-request-github|Git|0.123.2025120404\nvscode-azure-github-copilot|ms-|1.0.137\nvscode-azure-mcp-server|ms-|2.0.7\nvscode-azureresourcegroups|ms-|0.11.7\ndebugpy|ms-|2025.16.0\npython|ms-|2025.18.0\nvscode-pylance|ms-|2025.10.3\nvscode-python-envs|ms-|1.12.0\nremote-containers|ms-|0.433.0\ncmake-tools|ms-|1.22.19\ncpptools|ms-|1.29.2\ncpptools-extension-pack|ms-|1.3.1\nextension-test-runner|ms-|0.0.12\nvscode-github-issue-notebooks|ms-|0.0.134\nchatgpt|ope|0.5.48\nnative-preview|Typ|0.20251204.1\nvscode-lldb|vad|1.11.8\nexplorer|vit|1.36.0\ndebug|web|0.27.0\n\n(1 theme extensions excluded)\n\n</details><details>\n<summary>A/B Experiments</summary>\n\n```\nvsliv368cf:30146710\npythonvspyt551cf:31249598\nnativeloc1:31118317\ndwcopilot:31158714\n471b6256:31240254\ndwoutputs:31242946\ncopilot_t_ci:31333650\ng012b348:31231168\npythonrdcb7:31268811\npythonpcpt1cf:31399617\n6518g693:31302842\n6abeh943:31336334\nenvsactivate1:31349248\neditstats-enabled:31346256\ncloudbuttont:31366566\naihoversummaries_t:31413033\nqwen_all_req:31396049\n3efgi100_wstrepl:31403338\ntrigger-command-fix:31379601\nauto_model_enabled:31396818\nuse-responses-api:31390341\nje187915:31401257\n2a0ce269:31419921\ncopilot-nes-oct-t:31413017\nmetis_rerank_treatment1:31411021\nterminalsuggestenabled:31421703\nnone:31426257\ncp_cls_c_966_ss:31426491\nchatvisible:31417128\nexpandedtokens:31418009\na9239246:31426643\n4je02754:31426859\ndecaj161:31422462\nfind_all_ref_in_bg_t:31420845\n9cj19850:31423615\n478ah919:31426749\nge8j1254_inline_auto_hint_haiku:31426887\nfa76a614:31426880\n5j92g670_sonnet:31426790\n7a04d226_do_not_restore_last_panel_session:31428335\nanthropic_thinking_t:31427198\n406hc587_ask_agent:31428392\n\n```\n\n</details>\n\n<!-- generated by issue reporter -->",
+      "state": "closed",
+      "labels": [
+        "bug",
+        "info-needed",
+        "chat",
+        "chat-agent"
+      ],
+      "created_at": "2025-12-04T17:50:36Z",
+      "closed_at": "2025-12-13T11:32:40Z",
+      "user": "bryanchen-d"
+    },
+    {
+      "number": 281258,
+      "title": "Agent sessions: allow to resize the sessions sidebar like terminal tabs",
+      "body": "I wanted to increase the size of the pane chat by dragging the separator line between the panel chat and the recent sessions to the right. That separator is not expandable/contractible, so it is currently not possible to hide the recent sessions without moving the left border of the panel chat to the right. I think I would have liked the border to be movable. ",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-04T15:46:25Z",
+      "closed_at": null,
+      "user": "aiday-mar"
+    },
+    {
+      "number": 281241,
+      "title": "Refresh Icon Arrows not align in the center",
+      "body": "<img width=\"191\" height=\"242\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3eb4c2be-ba63-419d-977a-0ea0ff0071f6\" />\n",
+      "state": "open",
+      "labels": [
+        "bug",
+        "ux",
+        "icons-product"
+      ],
+      "created_at": "2025-12-04T14:07:35Z",
+      "closed_at": null,
+      "user": "abhijit-chikane"
+    },
+    {
+      "number": 280704,
+      "title": "allow agents to define which subagents can be used",
+      "body": "Testing #280354\n\nToday in order to control if an agent can be a subagent, you set it on the agent file using `infer`. If you want to create a \"Manager\" agent with multiple agent sub roles, you cannot do this properly because \"Plan\" is always available and readonly (contributed by the extension).\n\nWouldn't it make sense to have a list of available sub agents in the top level agent?",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "chat-prompts"
+      ],
+      "created_at": "2025-12-02T19:08:08Z",
+      "closed_at": null,
+      "user": "sbatten"
+    },
+    {
+      "number": 280617,
+      "title": "Support actioning session widgets that require input in the session hover",
+      "body": "Support taking actions here directly\n\n<img width=\"1835\" height=\"505\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/adf71b1c-214f-4322-acb4-fc1787795ae7\" />\n\nas an aside, requires fixing https://github.com/microsoft/vscode/issues/257923",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "chat",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-02T14:48:56Z",
+      "closed_at": null,
+      "user": "connor4312"
+    },
+    {
+      "number": 280422,
+      "title": "Agent sessions: stop running session when archiving",
+      "body": "Ref https://github.com/microsoft/vscode-internalbacklog/issues/6311\n\n- Kick off a new background or cloud agent session\n- Use the archive button\n- ❓ I think I expect archive to both stop and hide the session\n     - Unless we think there are scenarios where users want to kick off sessions, archive them to get them out of view, and still keep them running? ",
+      "state": "open",
+      "labels": [
+        "under-discussion",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-12-01T19:41:39Z",
+      "closed_at": null,
+      "user": "bamurtaugh"
+    },
+    {
+      "number": 280203,
+      "title": "agent doesn't try re-calling failed MCP",
+      "body": "<!-- Please search existing issues to avoid creating duplicates -->\n<!-- Please attach logs to help us diagnose your issue -->\n\n- Copilot Chat Extension Version:\n- VS Code Version: 1.107.0-insider (Universal) Commit b1018f0c37cb5dc62bba1665f6d2821fff098646\n- OS Version: macOS Sequoia 15.4.1 arm64\n- Feature: agent\n- Selected model: Claude 4.5 opus\n- Logs: requestId        : 1a01e9b4-93e5-4c6c-aba3-8572ddc427c7\n\n<img width=\"315\" height=\"215\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/de072c78-cd2a-41bd-a1c0-bf9d8198d820\" />\n\nSteps to Reproduce:\n\n1. run a premium request\n2. it triggers a MCP use\n3. said MCP is stuck due to unknown issue\n4. manually restart it in mcp.json\n5. agent doesn't retry making MCP request, chat is over\n6. a premium request is still used.",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "chat-mcp"
+      ],
+      "created_at": "2025-12-01T01:30:08Z",
+      "closed_at": null,
+      "user": "scarf005"
+    },
+    {
+      "number": 279672,
+      "title": "Setup GHE.com URL with GPO",
+      "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nI need to setup the GHE.com (Github Enterprise URL) for all or developers. Please provide an GPO to set this value automatically for the full team.",
+      "state": "open",
+      "labels": [
+        "feature-request"
+      ],
+      "created_at": "2025-11-26T22:06:03Z",
+      "closed_at": null,
+      "user": "alexhass"
+    },
+    {
+      "number": 279571,
+      "title": "Suggest import NES for a not-found symbol even if I didn't type it",
+      "body": "AFAIK, currently only symbols that user recently inserted are looked up for import-NES. However, it would be great if making any edits that result in not-found symbols would trigger import-NES for those symbols. \n\nrepro: \n\n1. have a class C with a method `foo` \n2. extract the method to become an exported function in another file \n3. now, if I remove `this.` from `this.foo`, I should still get import NES for `foo` \n\n",
+      "state": "open",
+      "labels": [
+        "feature-request"
+      ],
+      "created_at": "2025-11-26T11:43:25Z",
+      "closed_at": null,
+      "user": "ulugbekna"
+    },
+    {
+      "number": 278551,
+      "title": "I get GPT 4.1 as default model",
+      "body": "Works fine in Stable. I can only repro in Insiders. \n\n1. `code-insiders --transient`\n2. You get the chat welcome view. Send a message \"what is 2+2\"\n3. Login with a paid account (my MSFT joined gh account)\n4. You get GPT 4.1 as default model 🐛 \n\nI can not 100% repro. So might it be a timing issue?\n\ncc @sbatten @jrieken @bpasero ",
+      "state": "open",
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2025-11-20T10:36:46Z",
+      "closed_at": null,
+      "user": "isidornikolic"
+    },
+    {
+      "number": 277135,
+      "title": "Chat: implement code actions in core",
+      "body": "We show code actions in the editor context menu and `Cmd+.` menu:\n\n<img width=\"428\" height=\"320\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c68bf512-5e40-4fca-9003-a1a64e9198db\" />\n\nand\n\n<img width=\"335\" height=\"115\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4ca619ca-e029-450c-94d5-d206ac565448\" />\n\nand\n\n<img width=\"370\" height=\"114\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c7e84673-3b2f-4ec1-a13d-df103485e928\" />\n\nWe already implement these from core in the case where Chat is not installed, but we still have 2 implementations. Ideally we provide it all from core.\n\nRefs in Core\n\nhttps://github.com/microsoft/vscode/blob/61680abaf7530334bfe2de829d0e29eff10cae52/src/vs/workbench/contrib/chat/browser/chatSetup.ts#L678\n\nRefs in Extension:\n\nhttps://github.com/microsoft/vscode-copilot-chat/blob/91c10e36d2f5d4b037f0520930a8c9aa80e09462/src/extension/inlineChat/vscode-node/inlineChatCodeActions.ts#L212\n\n//cc @jrieken ",
+      "state": "open",
+      "labels": [
+        "debt",
+        "chat"
+      ],
+      "created_at": "2025-11-13T13:53:01Z",
+      "closed_at": null,
+      "user": "bpasero"
+    },
+    {
+      "number": 277109,
+      "title": "New icons are less readable in version 1.106 - option to revert?",
+      "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\n\nWith the latest update (version 1.106), the icons in the search bar received a refreshed look. Honestly, the new set is much less readable and efficient than the previous version. This update feels unnecessary and makes the search interface visually frustrating, especially for users who value clarity and speed.\n\nIs there any way to switch back to the old icon style using app settings? If not, please consider adding this option: for users with a strong design background, the previous icons were simply better.",
+      "state": "closed",
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2025-11-13T11:43:16Z",
+      "closed_at": "2025-12-17T12:25:21Z",
+      "user": "arnofly"
+    },
+    {
+      "number": 276906,
+      "title": "rm `run_task` in favor of an execute strategy on `run_in_terminal`",
+      "body": "This will then benefit from any improvements we make to `run_in_terminal` ",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "tasks",
+        "plan-item",
+        "chat-agent"
+      ],
+      "created_at": "2025-11-12T13:32:32Z",
+      "closed_at": null,
+      "user": "meganrogge"
+    },
+    {
+      "number": 276318,
+      "title": "Unable to view some HPP files in Merge Editor",
+      "body": "\nType: <b>Bug</b>\n\n1. Have HPP files with merge conflicts open in file display window.\n2. Attempt to open the HPP file using the \"Resolve with Merge Editor\" button in the bottom right.\n\nThe file should open, as it is there in the display window. However, when Merge Editor attempts to open it, it throws an error saying it cannot find the file.\n\nVS Code version: Code - OSS 1.104.1 (0f0d87fa9e96c856c5212fc86db137ac0d783365, 2025-09-18T16:13:21.262Z)\nOS version: Linux x64 6.12.48-1-MANJARO\nModes:\n\n<details>\n<summary>System Info</summary>\n\n|Item|Value|\n|---|---|\n|CPUs|AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx (8 x 2394)|\n|GPU Status|2d_canvas: enabled<br>direct_rendering_display_compositor: disabled_off_ok<br>gpu_compositing: enabled<br>multiple_raster_threads: enabled_on<br>opengl: enabled_on<br>rasterization: enabled<br>raw_draw: disabled_off_ok<br>skia_graphite: disabled_off<br>trees_in_viz: disabled_off<br>video_decode: enabled<br>video_encode: disabled_software<br>vulkan: disabled_off<br>webgl: enabled<br>webgl2: enabled<br>webgpu: disabled_off<br>webnn: disabled_off|\n|Load (avg)|1, 1, 2|\n|Memory (System)|5.73GB (1.26GB free)|\n|Process Argv||\n|Screen Reader|no|\n|VM|0%|\n|DESKTOP_SESSION|xfce|\n|XDG_CURRENT_DESKTOP|XFCE|\n|XDG_SESSION_DESKTOP|xfce|\n|XDG_SESSION_TYPE|x11|\n</details><details><summary>Extensions (5)</summary>\n\nExtension|Author (truncated)|Version\n---|---|---\nccls|ccl|0.1.31\ncppdebug|Kyl|0.1.0\nvscode-clangd|llv|0.2.0\njava|red|1.47.0\nvscode-lldb|vad|1.11.8\n\n\n</details>\n\n<details><summary>Log Errors when attempting to view</summary>\nWhenever I open an HPP file with merge conflicts in Merge Editor, the following errors get printed to log (I had 2 files, and this is the log for both ``PoseEstimator3d.hpp`` and ``PoseEstimator.hpp``, respectively.):\n\n``\n2025-11-08 16:56:40.479 [error] [Window] Error: Unable to read file 'git:/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator3d.hpp?{\"path\":\"/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator3d.hpp\",\"ref\":\"b8d6bc2eb1b6cea10d1179939114d041945e172a\"}' (Error: Unable to resolve nonexistent file 'git:/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator3d.hpp?{\"path\":\"/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator3d.hpp\",\"ref\":\"b8d6bc2eb1b6cea10d1179939114d041945e172a\"}')\n    at lSt.G (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3677:65941)\n    at lSt.F (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3677:65766)\n    at async xSt.L (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3682:9979)\n    at async xSt.readStream (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3682:9754)\n    at async wwe.Eb (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:12360)\n    at async wwe.resolve (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:10835)\n    at async CSt.W (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3682:6625)\n    at async YKe.r (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:21411)\n    at async pTt.acquire (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:27:3195)\n    at async ZKe.createModelReference (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:22967)\n``\n\n``\n2025-11-08 16:57:50.163 [error] [Window] Error: Unable to read file 'git:/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator.hpp?{\"path\":\"/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator.hpp\",\"ref\":\"b8d6bc2eb1b6cea10d1179939114d041945e172a\"}' (Error: Unable to resolve nonexistent file 'git:/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator.hpp?{\"path\":\"/home/tqpcharlie/Documents/allwpilib/wpimath/src/main/native/include/wpi/math/estimator/PoseEstimator.hpp\",\"ref\":\"b8d6bc2eb1b6cea10d1179939114d041945e172a\"}')\n    at lSt.G (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3677:65941)\n    at lSt.F (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3677:65766)\n    at async xSt.L (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3682:9979)\n    at async xSt.readStream (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3682:9754)\n    at async wwe.Eb (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:12360)\n    at async wwe.resolve (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:10835)\n    at async CSt.W (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:3682:6625)\n    at async YKe.r (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:21411)\n    at async pTt.acquire (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:27:3195)\n    at async ZKe.createModelReference (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1226:22967)\n``\n</details>\n\n<details><summary> Later error logs: </summary>\nAfter attempting to open Merge Editor several times, the following errors also printed to log:\n\n``\n2025-11-08 16:58:10.315 [error] [Window] An unknown error occurred. Please consult the log for more details.: EntryNotFound (FileSystemError): \n\tat Object.readFile (/usr/lib/code/extensions/git/dist/main.js:2:208335)\n\tat process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n\n2025-11-08 16:58:14.392 [error] [Window] An unknown error occurred. Please consult the log for more details.: EntryNotFound (FileSystemError): \n\tat Object.readFile (/usr/lib/code/extensions/git/dist/main.js:2:208335)\n``\n</details>\n\n\n<details><summary> Screenshots (that show files open in regular window) </summary>\n\n<img width=\"1366\" height=\"768\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7bda51bc-b254-4d4b-b153-2b269497e035\" />\n\n<img width=\"1366\" height=\"768\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/6ad71ec1-a161-491d-a566-300542a1a8ae\" />\n\n<img width=\"1366\" height=\"768\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fb660433-def2-4fce-890b-f3a90a5f7343\" />\n\n<img width=\"1366\" height=\"768\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/15214efb-2252-4523-a720-23893082474f\" />\n\n\n</details>",
+      "state": "open",
+      "labels": [
+        "bug",
+        "git"
+      ],
+      "created_at": "2025-11-08T22:12:09Z",
+      "closed_at": null,
+      "user": "tqpcharlie"
+    },
+    {
+      "number": 276243,
+      "title": "Agents View: support deletion of sessions",
+      "body": "Re #274477\n\nIn the grouped agents view, extensions contribute their own “delete” button to the session entry. This can easily fall apart, for example, when users delete a session that’s already opened in the Chat Editor, the editor still stays open even though the session is gone. Different extensions may also choose different icons for “delete”.\n\nThis makes me wonder if “Archive” / “Delete” should be part of the core API.",
+      "state": "open",
+      "labels": [
+        "feature-request",
+        "under-discussion",
+        "chat-agents-view"
+      ],
+      "created_at": "2025-11-08T05:32:14Z",
+      "closed_at": null,
+      "user": "rebornix"
+    },
+    {
+      "number": 275989,
+      "title": "Cloning in VSCode sets absolute worktree path. It breaks git on WSL. How to prevent VSCode from doing this unnecessary behavior?",
+      "body": "<!-- ⚠️⚠️ Do Not Delete This! bug_report_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- 🕮 Read our guide about submitting issues: https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions -->\n<!-- 🔎 Search existing issues to avoid creating duplicates. -->\n<!-- 🧪 Test using the latest Insiders build to see if your issue has already been fixed: https://code.visualstudio.com/insiders/ -->\n<!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->\n<!-- 🔧 Launch with `code --disable-extensions` to check. -->\nDoes this issue occur when all extensions are disabled?: Yes/No\n\n<!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->\n<!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->\nVersion: 1.105.1 (user setup)\nCommit: 7d842fb85a0275a4a8e4d7e040d2625abbf7f084\nDate: 2025-10-14T22:33:36.618Z\nElectron: 37.6.0\nElectronBuildId: 12502201\nChromium: 138.0.7204.251\nNode.js: 22.19.0\nV8: 13.8.258.32-electron.0\nOS: Windows_NT x64 10.0.19044\n\nSteps to Reproduce:\n\n1. Use \"Clone Git Repository...\"\n2. Run WSL on the repo's local directory\n3. Run git\n4. See git fail with \"cannot chdir to <windows absolute path>.. no such file or directory\"\n",
+      "state": "open",
+      "labels": [
+        "bug",
+        "help wanted",
+        "git"
+      ],
+      "created_at": "2025-11-07T03:38:36Z",
+      "closed_at": null,
+      "user": "raymelon"
+    }
+  ]
+}
