@@ -1,5 +1,3 @@
-"""CLI for sentinel."""
-
 import argparse
 import sys
 from datetime import datetime
@@ -14,23 +12,16 @@ from sentinel.github.fetch import fetch_repo_milestone_bundle
 from sentinel.interventions.policy import Supervisor
 from sentinel.report.render_md import generate_report
 from sentinel.trace.store_jsonl import JsonlTraceStore
-from sentinel.util import slugify
 
 
 def generate_run_id() -> str:
-    """Generate a timestamp-based run ID.
-
-    Returns:
-        Run ID string (YYYYMMDD_HHMMSS).
-    """
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
 
 def cmd_fetch(args):
-    """Fetch and cache GitHub milestone bundle."""
     cache = FileCache()
     client = GitHubClient()
-    trace_store = JsonlTraceStore(Path("/dev/null"))  # Dummy trace for fetch-only
+    trace_store = JsonlTraceStore(Path("/dev/null"))
 
     try:
         bundle = fetch_repo_milestone_bundle(args.repo, args.milestone, cache, client, trace_store)
@@ -42,10 +33,8 @@ def cmd_fetch(args):
 
 
 def cmd_run(args):
-    """Run full agent pipeline with supervisor."""
     run_id = args.run_id or generate_run_id()
 
-    # Setup run directory
     runs_dir = get_runs_dir()
     run_dir = runs_dir / run_id
     trace_path = run_dir / "trace" / "events.jsonl"
@@ -62,7 +51,7 @@ def cmd_run(args):
             run_id,
             trace_store,
             supervisor,
-            llm_client=None,  # Use default (from env)
+            llm_client=None,
         )
 
         print(f"✓ Run completed: {run_id}")
@@ -73,7 +62,6 @@ def cmd_run(args):
         print(f"\n  Report: {result['report_path']}")
         print(f"  Trace: {result['trace_path']}")
 
-        # Create latest symlink
         latest_path = runs_dir / "latest"
         if latest_path.exists():
             latest_path.unlink()
@@ -90,7 +78,6 @@ def cmd_run(args):
 
 
 def cmd_report(args):
-    """Generate or regenerate report."""
     runs_dir = get_runs_dir()
     run_dir = runs_dir / args.run_id
 
@@ -109,30 +96,24 @@ def cmd_report(args):
     trace_store = JsonlTraceStore(trace_path)
     graph = EvidenceGraph()
 
-    # Rebuild graph from trace (simplified - would need to replay events properly)
-    # For v0, just generate report with what we have
     report_path = generate_report(args.run_id, trace_store, artifacts_dir, packets_dir, graph)
 
     print(f"✓ Report generated: {report_path}")
 
 
 def main():
-    """Main CLI entry point."""
     parser = argparse.ArgumentParser(description="Sentinel: Runtime supervision for AI agents")
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
 
-    # Fetch command
     fetch_parser = subparsers.add_parser("fetch", help="Fetch and cache GitHub milestone bundle")
     fetch_parser.add_argument("--repo", required=True, help="Repository (owner/repo)")
     fetch_parser.add_argument("--milestone", required=True, help="Milestone title")
 
-    # Run command
     run_parser = subparsers.add_parser("run", help="Run agent with supervisor")
     run_parser.add_argument("--repo", required=True, help="Repository (owner/repo)")
     run_parser.add_argument("--milestone", required=True, help="Milestone title")
     run_parser.add_argument("--run-id", help="Run ID (default: auto-generated)")
 
-    # Report command
     report_parser = subparsers.add_parser("report", help="Generate report")
     report_parser.add_argument("--run-id", required=True, help="Run ID")
     report_parser.add_argument("--format", default="markdown", help="Report format (default: markdown)")

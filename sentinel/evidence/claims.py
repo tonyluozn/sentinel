@@ -1,5 +1,3 @@
-"""Claim extraction from artifacts and trace events."""
-
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,25 +8,15 @@ from sentinel.trace.schema import Event
 
 @dataclass
 class Claim:
-    """A claim extracted from an artifact."""
-
     id: str
     text: str
     section: str
-    severity: str  # HIGH, MEDIUM, LOW
+    severity: str
     source_line: int
     artifact_path: str
 
 
 def extract_claims_from_artifact(artifact_path: Path) -> List[Claim]:
-    """Extract claims from a markdown artifact.
-
-    Args:
-        artifact_path: Path to markdown file.
-
-    Returns:
-        List of extracted claims.
-    """
     if not artifact_path.exists():
         return []
 
@@ -39,7 +27,6 @@ def extract_claims_from_artifact(artifact_path: Path) -> List[Claim]:
     current_section = None
     claim_counter = 0
 
-    # Section patterns
     section_patterns = {
         "Goals": r"^#+\s*(?:Goals?|Objectives?)",
         "Non-goals": r"^#+\s*(?:Non-?goals?|Out of Scope)",
@@ -50,23 +37,19 @@ def extract_claims_from_artifact(artifact_path: Path) -> List[Claim]:
     }
 
     for line_num, line in enumerate(content.split("\n"), 1):
-        # Check for section headers
         for section_name, pattern in section_patterns.items():
             if re.match(pattern, line, re.IGNORECASE):
                 current_section = section_name
                 break
 
-        # Extract sentences from sections
         if current_section:
-            # Simple sentence extraction (split on periods, exclamation, question marks)
             sentences = re.split(r"[.!?]+\s+", line.strip())
             for sentence in sentences:
                 sentence = sentence.strip()
-                if len(sentence) > 20:  # Filter out very short fragments
+                if len(sentence) > 20:
                     claim_counter += 1
                     claim_id = f"{artifact_path.stem}_claim_{claim_counter}"
 
-                    # Assign severity based on section
                     if current_section in ["Goals", "Scope", "Metrics", "Rollout"]:
                         severity = "HIGH"
                     elif current_section == "Risks":
@@ -89,14 +72,6 @@ def extract_claims_from_artifact(artifact_path: Path) -> List[Claim]:
 
 
 def extract_claims_from_trace(trace_events: List[Event]) -> List[Claim]:
-    """Extract claims from trace events (artifact events).
-
-    Args:
-        trace_events: List of trace events.
-
-    Returns:
-        List of extracted claims.
-    """
     claims = []
     for event in trace_events:
         if event.type == "artifact":

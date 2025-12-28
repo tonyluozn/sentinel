@@ -1,5 +1,3 @@
-"""Agent implementation for PRD generation."""
-
 from sentinel.agent.loop import run_agent_with_supervisor
 from sentinel.agent.prd_writer import PRDAgent
 

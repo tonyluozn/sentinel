@@ -16,6 +16,25 @@
 
 ## API Keys Configuration
 
+### Option 1: Use .env File (Recommended)
+
+1. Copy the example file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Edit `.env` and add your actual keys:
+   ```bash
+   OPENAI_API_KEY=sk-your-actual-key-here
+   GITHUB_TOKEN=ghp_your-actual-token-here
+   ```
+
+The `.env` file is automatically loaded when you import sentinel (requires `python-dotenv` which is included in dependencies).
+
+**Note**: `.env` is in `.gitignore` so your keys won't be committed.
+
+### Option 2: Environment Variables
+
 ### Required: OpenAI API Key
 
 Sentinel uses OpenAI's API for the LLM agent. You **must** set this.

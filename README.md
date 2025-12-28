@@ -2,6 +2,21 @@
 
 Runtime supervision for long-running AI agents. Decision boundaries, evidence binding, and minimal human escalation.
 
+## Quick Start
+
+```bash
+# 1. Install
+pip install -e .
+
+# 2. Set API key
+export OPENAI_API_KEY="sk-your-key-here"
+
+# 3. Run
+sentinel run --repo owner/repo --milestone "v1.0.0"
+```
+
+See [QUICKSTART.md](QUICKSTART.md) for detailed setup instructions.
+
 ## Overview
 
 Sentinel provides runtime supervision for AI agents that make tool calls and run for extended periods. It monitors agent behavior in real-time, detects decision boundaries, extracts claims from generated artifacts, binds evidence, and generates interventions when needed.
@@ -34,24 +49,31 @@ pip install -e .
 
 ### 2. Set API Keys
 
-**Required: OpenAI API Key**
+**Option A: Use .env file (Recommended)**
+
+1. Copy the example file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Edit `.env` and add your keys:
+   ```bash
+   OPENAI_API_KEY=sk-your-actual-key-here
+   GITHUB_TOKEN=ghp_your-actual-token-here
+   ```
+
+The `.env` file is automatically loaded when you import sentinel.
+
+**Option B: Environment variables**
+
 ```bash
 export OPENAI_API_KEY="sk-your-openai-api-key-here"
-```
-Get it from: https://platform.openai.com/api-keys
-
-**Optional: GitHub Token** (recommended for higher rate limits)
-```bash
 export GITHUB_TOKEN="ghp_your-github-token-here"
 ```
-Get it from: https://github.com/settings/tokens (select `public_repo` scope)
 
-**To make keys persistent**, add the `export` commands to your shell profile:
-- `~/.zshrc` (macOS/Linux with zsh)
-- `~/.bashrc` (Linux with bash)
-- `~/.config/fish/config.fish` (Fish shell)
-
-Then reload: `source ~/.zshrc`
+**Getting Your Keys:**
+- OpenAI API Key: https://platform.openai.com/api-keys (Required)
+- GitHub Token: https://github.com/settings/tokens (Optional, select `public_repo` scope)
 
 See [SETUP.md](SETUP.md) for detailed setup instructions and troubleshooting.
 

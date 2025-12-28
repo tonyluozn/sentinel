@@ -1,9 +1,7 @@
-"""Supervisor policy for real-time intervention."""
-
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from sentinel.boundaries.detect import BoundaryEvent, detect_boundaries
+from sentinel.boundaries.detect import detect_boundaries
 from sentinel.evidence.graph import EvidenceGraph
 from sentinel.interventions.types import Intervention, InterventionType
 from sentinel.trace.schema import Event, EventType, new_event
@@ -11,15 +9,7 @@ from sentinel.trace.store_jsonl import JsonlTraceStore
 
 
 class Supervisor:
-    """Supervisor that analyzes agent behavior and generates interventions."""
-
     def __init__(self, graph: EvidenceGraph, trace_store: JsonlTraceStore):
-        """Initialize supervisor.
-
-        Args:
-            graph: Evidence graph to track claims and evidence.
-            trace_store: Trace store for logging decisions and interventions.
-        """
         self.graph = graph
         self.trace_store = trace_store
         self.tool_call_count = 0
@@ -30,28 +20,15 @@ class Supervisor:
         trace_events: List[Event],
         current_artifacts: Dict[str, Path],
     ) -> Optional[Intervention]:
-        """Analyze agent step and generate intervention if needed.
-
-        Args:
-            trace_events: Recent trace events from agent.
-            current_artifacts: Current artifacts (name -> path mapping).
-
-        Returns:
-            Intervention if needed, None otherwise.
-        """
-        # Update tool call count
         for event in trace_events:
             if event.type == "tool_call":
                 self.tool_call_count += 1
 
-        # Detect boundaries
         boundaries = detect_boundaries(trace_events, self.graph, current_artifacts)
 
-        # Check for uncovered HIGH claims
         uncovered = self.graph.uncovered_claims(min_severity="HIGH")
         if uncovered:
             if len(uncovered) >= 3:
-                # Escalate if too many uncovered
                 intervention = Intervention(
                     type=InterventionType.ESCALATE,
                     target_id="multiple_claims",
@@ -65,7 +42,6 @@ class Supervisor:
                 self._emit_intervention(intervention)
                 return intervention
             else:
-                # Request evidence for uncovered claims
                 claim = uncovered[0]
                 intervention = Intervention(
                     type=InterventionType.REQUEST_EVIDENCE,
@@ -86,7 +62,6 @@ class Supervisor:
                 self._emit_intervention(intervention)
                 return intervention
 
-        # Check boundaries
         for boundary in boundaries:
             if boundary.type == "empty_metrics":
                 intervention = Intervention(
@@ -114,11 +89,9 @@ class Supervisor:
                 self._emit_intervention(intervention)
                 return intervention
 
-        # Check for too many tool calls without progress
         if self.tool_call_count > 50:
-            # Check if we have evidence bindings
             total_evidence = len(self.graph.evidence)
-            if total_evidence < 5:  # Very few evidence items
+            if total_evidence < 5:
                 intervention = Intervention(
                     type=InterventionType.ESCALATE,
                     target_id="tool_call_limit",
@@ -135,11 +108,6 @@ class Supervisor:
         return None
 
     def _emit_intervention(self, intervention: Intervention):
-        """Emit intervention event to trace.
-
-        Args:
-            intervention: Intervention to emit.
-        """
         self.interventions_issued.append(intervention)
         self.trace_store.append(
             new_event(
