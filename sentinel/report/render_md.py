@@ -1,10 +1,8 @@
-"""Generate markdown reports."""
-
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict
 
 from sentinel.evidence.graph import EvidenceGraph
-from sentinel.trace.schema import Event, EventType
+from sentinel.trace.schema import EventType
 from sentinel.trace.store_jsonl import JsonlTraceStore
 
 
@@ -15,39 +13,17 @@ def generate_report(
     packets_dir: Path,
     graph: EvidenceGraph,
 ) -> Path:
-    """Generate markdown report.
-
-    Args:
-        run_id: Run identifier.
-        trace_store: Trace store with events.
-        artifacts_dir: Directory containing artifacts.
-        packets_dir: Directory containing packets.
-        graph: Evidence graph with claims and evidence.
-
-    Returns:
-        Path to generated report.
-    """
-    # Load all events
     events = list(trace_store.iter_events())
 
-    # Count events by type
     event_counts: Dict[str, int] = {}
     for event in events:
         event_counts[event.type] = event_counts.get(event.type, 0) + 1
 
-    # Count interventions
     interventions = [e for e in events if e.type == EventType.INTERVENTION]
-
-    # Get uncovered claims
     uncovered = graph.uncovered_claims(min_severity="HIGH")
-
-    # Find artifacts
     artifacts = list(artifacts_dir.glob("*.md")) if artifacts_dir.exists() else []
-
-    # Find packets
     packets = list(packets_dir.glob("packet_*.md")) if packets_dir.exists() else []
 
-    # Write report
     report_dir = Path("runs") / run_id / "reports"
     report_dir.mkdir(parents=True, exist_ok=True)
     report_path = report_dir / "report.md"

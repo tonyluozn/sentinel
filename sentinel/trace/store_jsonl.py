@@ -1,29 +1,20 @@
-"""JSONL trace store implementation."""
-
 import json
 import sys
 from pathlib import Path
-from typing import Iterator, Optional
+from typing import Iterator
 
 from sentinel.trace.schema import Event
 
 
 class JsonlTraceStore:
-    """Store trace events in JSONL format."""
-
     def __init__(self, path: Path):
-        """Initialize trace store.
-
-        Args:
-            path: Path to JSONL file. Parent directories will be created if needed.
-        """
         self.path = path
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self._file = None
         self._lock_acquired = False
 
     def _acquire_lock(self):
-        """Acquire file lock (Unix only)."""
+        # fcntl only available on Unix
         if sys.platform != "win32":
             try:
                 import fcntl
@@ -33,10 +24,9 @@ class JsonlTraceStore:
                 fcntl.flock(self._file.fileno(), fcntl.LOCK_EX)
                 self._lock_acquired = True
             except ImportError:
-                pass  # fcntl not available
+                pass
 
     def _release_lock(self):
-        """Release file lock."""
         if sys.platform != "win32" and self._lock_acquired:
             try:
                 import fcntl
@@ -47,11 +37,6 @@ class JsonlTraceStore:
                 pass
 
     def append(self, event: Event):
-        """Append an event to the trace store.
-
-        Args:
-            event: Event to append.
-        """
         self._acquire_lock()
         try:
             if self._file is None:
@@ -63,11 +48,6 @@ class JsonlTraceStore:
             self._release_lock()
 
     def iter_events(self) -> Iterator[Event]:
-        """Iterate over all events in the store.
-
-        Yields:
-            Event objects from the trace store.
-        """
         if not self.path.exists():
             return
 
@@ -79,20 +59,16 @@ class JsonlTraceStore:
                 try:
                     data = json.loads(line)
                     yield Event(**data)
-                except (json.JSONDecodeError, ValueError) as e:
-                    # Skip malformed lines, but log warning
+                except (json.JSONDecodeError, ValueError):
                     continue
 
     def close(self):
-        """Close the trace store file."""
         if self._file is not None:
             self._file.close()
             self._file = None
 
     def __enter__(self):
-        """Context manager entry."""
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit."""
         self.close()

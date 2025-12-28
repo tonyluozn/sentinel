@@ -1,16 +1,13 @@
-"""Fetch and bundle GitHub milestone data."""
-
 import json
 from pathlib import Path
 from typing import Dict
 
 from sentinel.config import get_data_dir
+from sentinel.github.cache import FileCache
+from sentinel.github.client import GitHubClient
 from sentinel.trace.schema import EventType, new_event
 from sentinel.trace.store_jsonl import JsonlTraceStore
 from sentinel.util import slugify
-
-from sentinel.github.cache import FileCache
-from sentinel.github.client import GitHubClient
 
 
 def fetch_repo_milestone_bundle(
@@ -20,19 +17,6 @@ def fetch_repo_milestone_bundle(
     client: GitHubClient,
     trace_store: JsonlTraceStore,
 ) -> Dict:
-    """Fetch and bundle GitHub milestone data.
-
-    Args:
-        repo: Repository in format "owner/repo".
-        milestone: Milestone title.
-        cache: File cache instance.
-        client: GitHub client instance.
-        trace_store: Trace store for logging.
-
-    Returns:
-        Normalized bundle dict with repo, milestone, and issues.
-    """
-    # Emit tool_call event
     trace_store.append(
         new_event(
             EventType.TOOL_CALL,
@@ -44,14 +28,12 @@ def fetch_repo_milestone_bundle(
         )
     )
 
-    # Check cache first
     repo_slug = slugify(repo)
     milestone_slug = slugify(milestone)
     cache_key = cache._make_key(repo_slug, milestone_slug, "bundle", {})
     cached = cache.get(cache_key)
 
     if cached:
-        # Emit observation from cache
         trace_store.append(
             new_event(
                 EventType.OBSERVATION,
@@ -65,7 +47,6 @@ def fetch_repo_milestone_bundle(
         )
         return cached
 
-    # Fetch from API
     milestones = client.get_milestones(repo)
     milestone_obj = None
     for m in milestones:
@@ -78,7 +59,6 @@ def fetch_repo_milestone_bundle(
 
     issues = client.get_issues(repo, milestone)
 
-    # Normalize bundle
     bundle = {
         "repo": {
             "owner": repo.split("/")[0],
@@ -106,21 +86,18 @@ def fetch_repo_milestone_bundle(
                 "user": issue.get("user", {}).get("login", ""),
             }
             for issue in issues
-            if "pull_request" not in issue  # Exclude PRs unless explicitly requested
+            if "pull_request" not in issue
         ],
     }
 
-    # Cache bundle
     cache.set(cache_key, bundle)
 
-    # Write to data directory
     data_dir = get_data_dir()
     bundle_path = data_dir / repo_slug / milestone_slug / "bundle.json"
     bundle_path.parent.mkdir(parents=True, exist_ok=True)
     with open(bundle_path, "w", encoding="utf-8") as f:
         json.dump(bundle, f, indent=2, ensure_ascii=False)
 
-    # Emit observation event
     label_counts = {}
     for issue in bundle["issues"]:
         for label in issue["labels"]:
