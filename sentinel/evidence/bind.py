@@ -44,24 +44,29 @@ def bind_evidence(
     evidence_list = []
     evidence_sources = []
 
-    for issue in bundle.get("issues", []):
-        evidence_sources.append(
-            {
-                "text": f"{issue.get('title', '')} {issue.get('body', '')}",
-                "source_ref": f"issue:{issue.get('number')}",
-                "source_type": "issue",
-            }
-        )
+    # Support new evidence_items format (from EvidenceSource protocol)
+    if "evidence_items" in bundle:
+        evidence_sources.extend(bundle["evidence_items"])
+    else:
+        # Legacy GitHub bundle format
+        for issue in bundle.get("issues", []):
+            evidence_sources.append(
+                {
+                    "text": f"{issue.get('title', '')} {issue.get('body', '')}",
+                    "source_ref": f"issue:{issue.get('number')}",
+                    "source_type": "issue",
+                }
+            )
 
-    milestone = bundle.get("milestone", {})
-    if milestone.get("description"):
-        evidence_sources.append(
-            {
-                "text": milestone["description"],
-                "source_ref": f"milestone:{milestone.get('number')}",
-                "source_type": "milestone",
-            }
-        )
+        milestone = bundle.get("milestone", {})
+        if milestone.get("description"):
+            evidence_sources.append(
+                {
+                    "text": milestone["description"],
+                    "source_ref": f"milestone:{milestone.get('number')}",
+                    "source_type": "milestone",
+                }
+            )
 
     for event in trace_events:
         if event.type == "observation":
