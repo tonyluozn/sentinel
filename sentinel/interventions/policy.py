@@ -1,15 +1,16 @@
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Protocol
 
 from sentinel.boundaries.detect import detect_boundaries
 from sentinel.evidence.graph import EvidenceGraph
 from sentinel.interventions.types import Intervention, InterventionType
 from sentinel.trace.schema import Event, EventType, new_event
-from sentinel.trace.store_jsonl import JsonlTraceStore
+
+from sentinel.core.interfaces import TraceStore
 
 
 class Supervisor:
-    def __init__(self, graph: EvidenceGraph, trace_store: JsonlTraceStore):
+    def __init__(self, graph: EvidenceGraph, trace_store: TraceStore):
         self.graph = graph
         self.trace_store = trace_store
         self.tool_call_count = 0
