@@ -11,7 +11,6 @@ from typing import Any, Callable, Dict, List, Optional
 from sentinel.evidence.bind import bind_evidence
 from sentinel.evidence.claims import extract_claims_from_artifact
 from sentinel.evidence.graph import EvidenceGraph
-from sentinel.interventions.policy import Supervisor
 from sentinel.interventions.types import Intervention, InterventionType
 from sentinel.packets.decision_packet import generate_packet
 from sentinel.trace.schema import Event, EventType, new_event
@@ -57,6 +56,9 @@ class SupervisorHook:
             packets_dir: Optional directory for escalation packets
             run_id: Optional run ID for escalation packets
         """
+        # Lazy import to avoid circular dependency
+        from sentinel.interventions.policy import Supervisor
+        
         self.trace_store = trace_store
         self.intervention_handler = intervention_handler
         self.evidence_source = evidence_source
